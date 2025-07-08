@@ -1,11 +1,11 @@
 {
-    "products" :[
-        {    
-            "id" :1,
-            "title" : "Nike 15",
-            "price" : 1500 ,
-            "company" : "Nike" ,
-            "category" : "shoes"
-        }
-    ]
+  "products": [
+    {
+      "id": "83c0",
+      "title": "addidas 17",
+      "company": "addidas",
+      "category": "shoes",
+      "price": "200"
+    }
+  ]
 }
