@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router";
 
 const Create = () => {
   const [data, setData] = useState([]);
@@ -9,6 +11,18 @@ const Create = () => {
     price: "",
   });
 
+  function handleAsc() {
+    let res = data.sort((a, b) => a.price - b.price);
+    setData([...res]);
+  }
+  function handleDes() {
+    let res = data.sort((a, b) => b.price - a.price);
+    setData([...res]);
+  }
+
+  function handleCategory(){
+    
+  }
   async function getData() {
     let res = await axios.get("http://localhost:3000/products");
     // console.log(res.data)
@@ -30,7 +44,7 @@ const Create = () => {
     getData();
   }, []);
   return (
-    <div style={{ background: "black", color: "white" }}>
+    <div className="" style={{ background: "black", color: "white" }}>
       <form
         onSubmit={handleSubmit}
         action=""
@@ -81,30 +95,50 @@ const Create = () => {
           Submit
         </button>
       </form>
-      <div></div>
-      {data &&
-        data.map((item) => {
-          return (
-            <div
-              className="border w-[200px] h-[200px] mt-[40px] ml-20 flex flex-col justify-center items-center"
-              key={item.id}
-            >
-              <p>Title :- {item.title}</p>
-              <p>category:- {item.category}</p>
-              <p>company :- {item.company}</p>
-              <p>Price :- {item.price}</p>
-              <button
-                className="border"
-                onClick={() => {
-                  handleDelete(item.id);
-                }}
+      <div className="flex flex-col w-[200px] h-[200px] mt-[30px] border justify-center items-center">
+        <button className="border w-[100px] mt-[10px]" onClick={handleAsc}>
+          Asending
+        </button>
+        <button className="border w-[100px] mt-[10px]" onClick={handleDes}>
+          Desending
+        </button>
+
+        <select onChange={handleCategory} name="" id="">
+          <option value="all">All</option>
+           <option value="shoes">shoes</option>
+           <option value="phone">phone</option>
+           <option value="glosary" >glosary</option>
+        </select>
+      </div>
+
+      <div className="w-[100vw] flex justify-around">
+        {data &&
+          data.map((item) => {
+            return (
+              <div
+                className="border w-[200px] h-[200px] mt-[40px] ml-20 flex flex-col justify-center items-center"
+                key={item.id}
               >
-                Delete
-              </button>
-              <button>Edit</button>
-            </div>
-          );
-        })}
+                <p>Title :- {item.title}</p>
+                <p>category:- {item.category}</p>
+                <p>company :- {item.company}</p>
+                <p>Price :- {item.price}</p>
+                <button
+                  className="border"
+                  onClick={() => {
+                    handleDelete(item.id);
+                  }}
+                >
+                  Delete
+                </button>
+                <Link to={`/update/${item.id}`}>
+                  {" "}
+                  <button>Edit</button>
+                </Link>
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 };

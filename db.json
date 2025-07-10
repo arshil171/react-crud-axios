@@ -5,7 +5,21 @@
       "title": "addidas 17",
       "company": "addidas",
       "category": "shoes",
+      "price": "2000"
+    },
+    {
+      "id": "52fe",
+      "title": "nike 15",
+      "company": "nike1",
+      "category": "shoes1",
       "price": "200"
+    },
+    {
+      "id": "eeca",
+      "title": "puma",
+      "company": "puma",
+      "category": "shoes",
+      "price": "3000"
     }
   ]
 }
